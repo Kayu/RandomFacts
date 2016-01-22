@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RandomFacts</string>
+    <string name="welcome">Welcome to our Random Facts Application</string>
+    <string name="crazy_facts">Crazy Facts</string>
+    <string name="sports_facts">Sports Facts</string>
+    <string name="quit">QUIT</string>
+    <string name="anothe_fact">ANOTHER ONE - DJ KHALED</string>
+</resources>
