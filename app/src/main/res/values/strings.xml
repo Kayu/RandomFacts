@@ -4,5 +4,17 @@
     <string name="crazy_facts">Crazy Facts</string>
     <string name="sports_facts">Sports Facts</string>
     <string name="quit">QUIT</string>
-    <string name="anothe_fact">ANOTHER ONE - DJ KHALED</string>
+    <string name="another_fact">ANOTHER ONE - DJ KHALED</string>
+    <string-array name="crazy_facts_array">
+        <item>crazy_fact_1</item>
+        <item>crazy_fact_2</item>
+        <item>crazy_fact_3</item>
+        <item>crazy_fact_4</item>
+    </string-array>
+    <string-array name="sports_facts_array">
+        <item>sports_fact_1</item>
+        <item>sports_fact_2</item>
+        <item>sports_fact_3</item>
+        <item>sports_fact_4</item>
+    </string-array>
 </resources>

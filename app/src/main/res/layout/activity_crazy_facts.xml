@@ -24,7 +24,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/anothe_fact"
+        android:text="@string/another_fact"
         android:textStyle="bold"
         android:id="@+id/button_anothercrazyfacts"
         android:layout_below="@+id/crazyfactsText"

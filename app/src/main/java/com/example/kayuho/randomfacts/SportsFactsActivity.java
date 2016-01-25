@@ -9,11 +9,13 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class SportsFactsActivity extends AppCompatActivity {
-    String[] facts = {"sport_facts1","sport_facts2", "sport_facts3", "sport_facts4"};
+    String[] facts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sports_facts);
+        facts = getResources().getStringArray(R.array.sports_facts_array);
+
         updateTextView();
 
         Button button_anotherfacts = (Button) findViewById(R.id.button_anothersportsfacts);
@@ -30,8 +32,7 @@ public class SportsFactsActivity extends AppCompatActivity {
         Random randomGenerator = new Random();
         int index = randomGenerator.nextInt(4);
         TextView textView = (TextView) findViewById(R.id.sportfactstext);
-        // String fact = facts[index];
         textView.setText(facts[index]);
-        android.util.Log.i("DEBUG", "index: " + index + ", fact: " + facts[index]);
+        //android.util.Log.i("DEBUG", "index: " + index + ", fact: " + facts[index]);
     }
 }
