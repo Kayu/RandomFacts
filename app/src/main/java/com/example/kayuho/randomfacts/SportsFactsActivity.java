@@ -6,8 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.Random;
-
 public class SportsFactsActivity extends AppCompatActivity {
     String[] facts;
     @Override
@@ -29,10 +27,9 @@ public class SportsFactsActivity extends AppCompatActivity {
 
     public void updateTextView()
     {
-        Random randomGenerator = new Random();
-        int index = randomGenerator.nextInt(4);
-        TextView textView = (TextView) findViewById(R.id.sportfactstext);
-        textView.setText(facts[index]);
+        updateTextView update = new updateTextView();
+        final TextView textView = (TextView) findViewById(R.id.sportfactstext);
+        textView.setText( update.getnewFacts(facts) );
         //android.util.Log.i("DEBUG", "index: " + index + ", fact: " + facts[index]);
     }
 }
