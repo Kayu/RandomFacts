@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class CrazyFactsActivity extends AppCompatActivity {
-    String[] facts;
+    private String[] facts;
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
