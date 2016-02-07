@@ -30,11 +30,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        sp.getString("pref_key", "EN");
-
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String bg_color = getPrefs.getString("pref_color", "1");
+        View mainLayout = findViewById(R.id.mainLayout);
+
+        switch(bg_color){
+            case "1":mainLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                break;
+            case "2":mainLayout.setBackgroundColor(getResources().getColor(R.color.red));
+                break;
+            case "3":mainLayout.setBackgroundColor(getResources().getColor(R.color.blue));
+                break;
+            case "4":mainLayout.setBackgroundColor(getResources().getColor(R.color.green));
+                break;
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -48,11 +63,14 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         RelativeLayout main = (RelativeLayout) findViewById(R.id.mainLayout);
+        switch(id) {
+            case R.id.action_settings:
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
-
-
-
 
     public void goToCrazyFacts(View v){
         android.util.Log.i("DEBUG", "It would be nice if you guys were all Android experts");

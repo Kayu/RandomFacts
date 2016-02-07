@@ -16,5 +16,9 @@
         android:fragment="com.example.kayuho.randomfacts.SettingsActivity$DataSyncPreferenceFragment"
         android:icon="@drawable/ic_sync_black_24dp"
         android:title="@string/pref_header_data_sync" />
+    <header
+        android:fragment="com.example.kayuho.randomfacts.SettingsActivity$ColorPreferenceFragment"
+        android:title="@string/colors"
+        />
 
 </preference-headers>

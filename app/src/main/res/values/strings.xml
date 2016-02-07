@@ -1,9 +1,7 @@
 <resources>
-    <string name="some_settings">Some Settings</string>
-    <string name="delete_title">Delete</string>
-    <string name="delete_summary">This function suppose to delete something..... I think?</string>
-    <string name="limit_title">Limit Facts</string>
-    <string name="limit_summary">Testing Testing, is this even working?????</string>
+    <string name="settings">Settings</string>
+    <string name="colors">Colors</string>
+    <string name="colors_summary">RGB</string>
 
     <string name="app_name">RandomFacts</string>
     <string name="welcome">Welcome to our Random Facts Application</string>
@@ -24,19 +22,18 @@
         <item>sports_fact_4</item>
     </string-array>
 
-    <string-array name="listOptions">
-        <item>Option 1</item>
-        <item>Option 2</item>
-        <item>Option 3</item>
+    <string-array name="listColor">
+        <item name="WHITE">White</item>
+        <item name="RED">Red</item>
+        <item name="BLUE">Blue</item>
+        <item name="GREEN">Green</item>
     </string-array>
-
-    <string-array name="listValues">
-        <item>1 is selected</item>
-        <item>2 is selected</item>
-        <item>3 is selected</item>
+    <string-array name="listColor_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
     </string-array>
-
-
     <string name="title_activity_settings">Settings</string>
 
     <!-- Strings related to Settings -->
