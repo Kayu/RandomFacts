@@ -7,12 +7,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class SportsFactsActivity extends AppCompatActivity {
-    private String[] facts;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sports_facts);
-        facts = getResources().getStringArray(R.array.sports_facts_array);
 
         updateTextView();
 
@@ -27,9 +26,8 @@ public class SportsFactsActivity extends AppCompatActivity {
 
     public void updateTextView()
     {
-        updateTextView update = new updateTextView();
-        final TextView textView = (TextView) findViewById(R.id.sportfactstext);
-        textView.setText( update.getnewFacts(facts) );
+        final TextView textView = (TextView) findViewById(R.id.crazyfactsText);
+        textView.setText( new SportFactsModel().getFacts() );
         //android.util.Log.i("DEBUG", "index: " + index + ", fact: " + facts[index]);
     }
 }
