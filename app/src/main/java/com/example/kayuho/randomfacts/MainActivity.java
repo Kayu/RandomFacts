@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Button button_quit = (Button) findViewById(R.id.button_quit);
         button_quit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,16 +85,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void goToSetting(View v){
+    public void goToDatabase(View v){
 
-        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+        Intent intent = new Intent(MainActivity.this, DatabaseActivity.class);
         startActivity(intent);
     }
 
     public void goToGoogleMap(View v){
-        //String uri = "http://maps.google.com/maps?saddr=" + "9982878"+","+"76285774"+"&daddr="+"9992084"+","+"76286455";
-        Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:<lat>,<long>?q=<lat>,<long>(Label+Name)"));
-        intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+        Uri concordiaUri = Uri.parse("google.streetview:cbll = 39.5692, 97.6583");
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW, concordiaUri);
+        intent.setPackage("com.google.android.app.maps");
         startActivity(intent);
     }
 }

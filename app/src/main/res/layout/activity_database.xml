@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/main_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.kayuho.randomfacts.DatabaseActivity">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editFacts"
+        android:layout_below="@+id/Database_textView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="45dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:id="@+id/button_add"
+        android:layout_below="@+id/editFacts"
+        android:layout_toStartOf="@+id/delete_all_button"
+        android:layout_marginTop="77dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Display"
+        android:id="@+id/button_display"
+        android:layout_alignTop="@+id/delete_all_button"
+        android:layout_toEndOf="@+id/delete_all_button" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Write something and click on the Add button to insert into the databse. Click on the display button to show the items in the database."
+        android:id="@+id/Database_textView"
+        android:layout_centerHorizontal="true"
+        android:textColor="#070707"
+        android:textSize="22dp"
+        android:textAlignment="center" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DELETE ALL"
+        android:id="@+id/delete_all_button"
+        android:layout_alignTop="@+id/button_add"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RESET"
+        android:id="@+id/button_reset"
+        android:layout_below="@+id/button_add"
+        android:layout_alignStart="@+id/button_add"
+        android:layout_alignEnd="@+id/button_display" />
+
+</RelativeLayout>

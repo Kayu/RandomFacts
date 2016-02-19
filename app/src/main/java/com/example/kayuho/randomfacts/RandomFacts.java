@@ -2,7 +2,7 @@ package com.example.kayuho.randomfacts;
 
 import java.util.Random;
 
-public class updateTextView {
+public class RandomFacts {
   public String getnewFacts(String[] facts)
   {
       Random randomGenerator = new Random();
