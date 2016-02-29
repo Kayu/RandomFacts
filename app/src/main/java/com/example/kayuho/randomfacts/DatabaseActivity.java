@@ -1,6 +1,7 @@
 package com.example.kayuho.randomfacts;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,11 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class DatabaseActivity extends AppCompatActivity {
     FactsDBHelper MyDB;
     EditText editFact;
+    RadioGroup factGroup;
     Button btnAdd, btnDisplay, btnDeleteAll, btnReset;
 
     @Override
@@ -23,6 +26,7 @@ public class DatabaseActivity extends AppCompatActivity {
         MyDB = new FactsDBHelper(this);
 
         editFact = (EditText)findViewById(R.id.editFacts);
+        factGroup = (RadioGroup) findViewById(R.id.factGroup);
         btnAdd = (Button)findViewById(R.id.button_add);
         btnDisplay = (Button)findViewById(R.id.button_display);
         btnDeleteAll = (Button)findViewById(R.id.delete_all_button);
@@ -38,7 +42,9 @@ public class DatabaseActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        boolean isInserted = MyDB.insert(editFact.getText().toString());
+                        TextView checkedText = (TextView) findViewById(factGroup.getCheckedRadioButtonId());
+
+                        boolean isInserted = MyDB.insert(editFact.getText().toString(), checkedText.getText().toString());
 
                         if (isInserted = true)
                             Toast.makeText(DatabaseActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
@@ -54,6 +60,7 @@ public class DatabaseActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         Cursor data = MyDB.getAllData();
                         if(data.getCount() == 0){
                             showMessage("Error","No Data Found");
@@ -62,7 +69,8 @@ public class DatabaseActivity extends AppCompatActivity {
                         StringBuffer buffer = new StringBuffer();
                         while(data.moveToNext()){
                             buffer.append("ID: "+ data.getString(0)+"\n");
-                            buffer.append("Fact: "+ data.getString(1)+"\n\n");
+                            buffer.append("Fact: "+ data.getString(1)+"\n");
+                            buffer.append("Type: "+data.getString(2)+"\n\n");
                         }
                         showMessage("Data", buffer.toString());
                     }
@@ -74,12 +82,7 @@ public class DatabaseActivity extends AppCompatActivity {
         btnDeleteAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean isDeleted = MyDB.deleteAll();
-
-                if (isDeleted = true)
-                    Toast.makeText(DatabaseActivity.this, "All Data Deleted", Toast.LENGTH_LONG).show();
-                else
-                    Toast.makeText(DatabaseActivity.this, "Error while deleting data", Toast.LENGTH_LONG).show();
+                MyDB.deleteAll();
             }
         });
     }
@@ -88,7 +91,7 @@ public class DatabaseActivity extends AppCompatActivity {
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MyDB.deleteAll();
             }
         });
     }

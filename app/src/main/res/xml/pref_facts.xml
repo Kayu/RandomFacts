@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:defaultValue="@string/crazy_facts"
+        android:entries="@array/listFacts"
+        android:entryValues="@array/listFacts"
+        android:key="pref_facts"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/facts" />
+</PreferenceScreen>

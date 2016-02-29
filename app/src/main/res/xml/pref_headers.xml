@@ -20,5 +20,9 @@
         android:fragment="com.example.kayuho.randomfacts.SettingsActivity$ColorPreferenceFragment"
         android:title="@string/colors"
         />
+    <header
+        android:fragment="com.example.kayuho.randomfacts.SettingsActivity$FactsPreferenceFragment"
+        android:title="@string/facts"
+        />
 
 </preference-headers>

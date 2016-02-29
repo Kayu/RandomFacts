@@ -23,9 +23,8 @@
         android:layout_height="wrap_content"
         android:text="Add"
         android:id="@+id/button_add"
-        android:layout_below="@+id/editFacts"
-        android:layout_toStartOf="@+id/delete_all_button"
-        android:layout_marginTop="77dp" />
+        android:layout_above="@+id/button_reset"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -33,7 +32,7 @@
         android:text="Display"
         android:id="@+id/button_display"
         android:layout_alignTop="@+id/delete_all_button"
-        android:layout_toEndOf="@+id/delete_all_button" />
+        android:layout_alignEnd="@+id/button_reset" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -54,12 +53,34 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="RESET"
         android:id="@+id/button_reset"
-        android:layout_below="@+id/button_add"
-        android:layout_alignStart="@+id/button_add"
-        android:layout_alignEnd="@+id/button_display" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editFacts"
+        android:layout_alignParentStart="true"
+        android:id="@+id/factGroup"
+        android:orientation="horizontal"
+        android:layout_marginTop="39dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:text="@string/crazy_facts"
+            android:id="@+id/radioButton_crazyFacts" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sports_facts"
+            android:id="@+id/radioButton2_sportFacts" />
+    </RadioGroup>
 
 </RelativeLayout>

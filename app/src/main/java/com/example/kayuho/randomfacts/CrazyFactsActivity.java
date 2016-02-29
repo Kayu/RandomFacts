@@ -13,11 +13,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class CrazyFactsActivity extends AppCompatActivity {
+
+    private SharedPreferences getPrefs;
+
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        getPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         setContentView(R.layout.activity_crazy_facts);
-        updateTextView();
+        this.updateTextView();
 
         Button button_anotherfacts = (Button) findViewById(R.id.button_anothercrazyfacts);
         button_anotherfacts.setOnClickListener(new View.OnClickListener() {
@@ -31,7 +35,6 @@ public class CrazyFactsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String bg_color = getPrefs.getString("pref_color", "1");
         View mainLayout = findViewById(R.id.crazyLayout);
         switch(bg_color){
@@ -70,7 +73,8 @@ public class CrazyFactsActivity extends AppCompatActivity {
     public void updateTextView()
     {
         final TextView textView = (TextView) findViewById(R.id.crazyfactsText);
-        textView.setText( new CrazyFactsModel().getFacts() );
+        String fact_type = getPrefs.getString("pref_facts",getResources().getString(R.string.crazy_facts));
+        textView.setText( new CrazyFactsModel().getFacts(this,fact_type) );
         //android.util.Log.i("DEBUG", "index: " + index + ", fact: " + facts[index]);
     }
 }

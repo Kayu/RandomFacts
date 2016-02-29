@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
 import java.io.FileNotFoundException;
+import java.sql.SQLDataException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 /**
@@ -18,17 +20,18 @@ public class FactsDBHelper extends SQLiteOpenHelper {
     private static String DATABASE_NAME = "facts.db";
     private static final int DATABASE_VERSION = 1;
     private String DROP_TABLE = "DROP TABLE IF EXISTS " + FactContract.FactsEntry.TABLE_NAME;
-    SQLiteDatabase db;
+    private String FactsTable = "create table if not exists "
+            + FactContract.FactsEntry.TABLE_NAME + " ( "
+            + BaseColumns._ID + " integer primary key autoincrement, "
+            + FactContract.FactsEntry.COLUMN_FACT + " text, "
+            + FactContract.FactsEntry.COLUMN_TYPE + " text);";
+    private SQLiteDatabase db;
     public FactsDBHelper(Context context){
         super(context, DATABASE_NAME, null,DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db){
-       String FactsTable = "create table if not exists "
-                + FactContract.FactsEntry.TABLE_NAME + " ( "
-                + BaseColumns._ID + " integer primary key autoincrement, "
-                + FactContract.FactsEntry.COLUMN_FACT + " text);";
         db.execSQL(FactsTable);
     }
 
@@ -38,27 +41,42 @@ public class FactsDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insert(String fact){
+    public boolean insert(String fact, String type){
 
-        ContentValues values = new ContentValues();
+        ContentValues values = new ContentValues(2);
         values.put(FactContract.FactsEntry.COLUMN_FACT, fact);
-        SQLiteDatabase db = this.getWritableDatabase();
+        values.put(FactContract.FactsEntry.COLUMN_TYPE,type);
+        db = this.getWritableDatabase();
         long successful = db.insert(FactContract.FactsEntry.TABLE_NAME, null, values);
         db.close();
         return (successful > 0);
     }
 
     public Cursor getAllData(){
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase();
         final String retrieveQuery="SELECT * FROM "+ FactContract.FactsEntry.TABLE_NAME;
         Cursor data = db.rawQuery(retrieveQuery, null);
         return data;
     }
 
-    public boolean deleteAll(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        long successful = db.delete(FactContract.FactsEntry.TABLE_NAME, null, null);
-        return (successful > 0);
+    //TODO finish getting the specific fact type
+    public Cursor getSpecificFactsType(String type){
+        db = this.getWritableDatabase();
+        final String retrieveQuery= "SELECT "+ FactContract.FactsEntry.COLUMN_FACT
+                                  + " FROM "+ FactContract.FactsEntry.TABLE_NAME
+                                  + " WHERE "+ FactContract.FactsEntry.COLUMN_TYPE
+                                  + " = '" + type+"';";
+        Cursor data = db.rawQuery(retrieveQuery,null);
+        return data;
+    }
+
+    public void deleteAll(){
+        db = this.getWritableDatabase();
+        db.execSQL(DROP_TABLE);
+
+        db.execSQL(FactsTable);
+        db.close();
+
     }
 
     public int getDBVersion(){
