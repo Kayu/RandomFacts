@@ -16,21 +16,33 @@ import java.util.Objects;
  * Created by kayuho on 2016-02-08.
  */
 public class FactsDBHelper extends SQLiteOpenHelper {
-
+    //Database name
     private static String DATABASE_NAME = "facts.db";
+    //database version
     private static final int DATABASE_VERSION = 1;
+
+    /*
+     SQL query that delete the table
+     "drop talbe if exist facts;"
+    */
     private String DROP_TABLE = "DROP TABLE IF EXISTS " + FactContract.FactsEntry.TABLE_NAME;
+    /*
+    SQL query that create the table
+    "create table if not exists facts ( ID integer primary key autoincrement, fact text, type text);"
+     */
     private String FactsTable = "create table if not exists "
             + FactContract.FactsEntry.TABLE_NAME + " ( "
             + BaseColumns._ID + " integer primary key autoincrement, "
             + FactContract.FactsEntry.COLUMN_FACT + " text, "
             + FactContract.FactsEntry.COLUMN_TYPE + " text);";
+    //database connection object
     private SQLiteDatabase db;
     public FactsDBHelper(Context context){
         super(context, DATABASE_NAME, null,DATABASE_VERSION);
     }
 
     @Override
+    //execute create table querie when first creating an object fo this class.
     public void onCreate(SQLiteDatabase db){
         db.execSQL(FactsTable);
     }
@@ -59,7 +71,6 @@ public class FactsDBHelper extends SQLiteOpenHelper {
         return data;
     }
 
-    //TODO finish getting the specific fact type
     public Cursor getSpecificFactsType(String type){
         db = this.getWritableDatabase();
         final String retrieveQuery= "SELECT "+ FactContract.FactsEntry.COLUMN_FACT

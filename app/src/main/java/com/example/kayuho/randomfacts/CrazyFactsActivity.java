@@ -16,22 +16,34 @@ public class CrazyFactsActivity extends AppCompatActivity {
 
     private SharedPreferences getPrefs;
 
+    //onCreate is called when user create this avtivity for the first time
     protected void onCreate(Bundle savedInstanceState) {
-
+        // calls the parent class(AppCompatActivity) onCreate method
         super.onCreate(savedInstanceState);
+
+        //get the preference from the setting activity
         getPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        //set the layout of this activity
         setContentView(R.layout.activity_crazy_facts);
+
+        //call the updateTextView method which displays a random fact msg.
         this.updateTextView();
 
+        //Get the crazy fact button by its id
         Button button_anotherfacts = (Button) findViewById(R.id.button_anothercrazyfacts);
+
+        //when the crazy fact buton is clicked, this method will be activated
         button_anotherfacts.setOnClickListener(new View.OnClickListener() {
             @Override
+            // calls the updateViewText method
             public void onClick(View v) {
                 updateTextView();
             }
         });
     }
 
+    // When this activity exit the onPause state, it will change the backgroud color depending of the setting activity.
     @Override
     protected void onResume() {
         super.onResume();
@@ -49,6 +61,7 @@ public class CrazyFactsActivity extends AppCompatActivity {
         }
     }
 
+    //this creates the setting overflow menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -72,8 +85,11 @@ public class CrazyFactsActivity extends AppCompatActivity {
 
     public void updateTextView()
     {
+        //get the textView by id
         final TextView textView = (TextView) findViewById(R.id.crazyfactsText);
+        //get the preference type of fact from the setting activity
         String fact_type = getPrefs.getString("pref_facts",getResources().getString(R.string.crazy_facts));
+        //update the textView by delegating the task to the Model.
         textView.setText( new CrazyFactsModel().getFacts(this,fact_type) );
         //android.util.Log.i("DEBUG", "index: " + index + ", fact: " + facts[index]);
     }

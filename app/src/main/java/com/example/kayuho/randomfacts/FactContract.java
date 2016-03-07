@@ -8,8 +8,11 @@ import android.provider.BaseColumns;
 public class FactContract {
 
     public static final class FactsEntry implements BaseColumns{
+        //table name
         public static final String TABLE_NAME = "facts";
+        //first column name
         public static final String COLUMN_FACT = "fact";
+        //second column name
         public static final String COLUMN_TYPE = "type";
 
     }
